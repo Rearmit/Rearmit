@@ -24,6 +24,7 @@ function depends_mesa3d() {
 
 function sources_mesa3d() {
     gitPullOrClone
+    applyPatch "$md_data/panfrost_Fix_reference_counting_with_batch-_resources.patch"
 }
 
 function build_mesa3d() {
