@@ -9,7 +9,7 @@
 # at https://raw.githubusercontent.com/RetroPie/RetroPie-Setup/master/LICENSE.md
 #
 
-rp_module_id="mupen64plusrearmit"
+rp_module_id="mupen64plus-rearmit"
 rp_module_desc="N64 emulator MUPEN64Plus"
 rp_module_help="ROM Extensions: .z64 .n64 .v64\n\nCopy your N64 roms to $romdir/n64"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/mupen64plus/mupen64plus-core/master/LICENSES"
@@ -17,7 +17,7 @@ rp_module_repo=":_pkg_info_mupen64plusrearmit"
 rp_module_section="main"
 rp_module_flags="sdl2"
 
-function depends_mupen64plusrearmit() {
+function depends_mupen64plus-rearmit() {
     local depends=(cmake libsamplerate0-dev libspeexdsp-dev libsdl2-dev libpng-dev libfreetype6-dev fonts-freefont-ttf libboost-filesystem-dev)
     isPlatform "rpi" && depends+=(libraspberrypi-bin libraspberrypi-dev)
     isPlatform "mesa" && depends+=(libgles2-mesa-dev)
@@ -29,7 +29,7 @@ function depends_mupen64plusrearmit() {
     getDepends "${depends[@]}"
 }
 
-function _get_repos_mupen64plusrearmit() {
+function _get_repos_mupen64plus-rearmit() {
     local repos=(
         'mupen64plus core'
         'mupen64plus ui-console'
@@ -45,7 +45,7 @@ function _get_repos_mupen64plusrearmit() {
     done
 }
 
-function _pkg_info_mupen64plusrearmit() {
+function _pkg_info_mupen64plus-rearmit() {
     local mode="$1"
     local repo
     case "$mode" in
@@ -106,7 +106,7 @@ function _pkg_info_mupen64plusrearmit() {
     esac
 }
 
-function sources_mupen64plusrearmit() {
+function sources_mupen64plus-rearmit() {
     local commit
     local repo
     while read repo; do
@@ -115,7 +115,7 @@ function sources_mupen64plusrearmit() {
     done < <(_get_repos_mupen64plus)
 }
 
-function build_mupen64plusrearmit() {
+function build_mupen64plus-rearmit() {
     rpSwap on 750
 
     local dir
@@ -154,7 +154,7 @@ function build_mupen64plusrearmit() {
     )
 }
 
-function install_mupen64plusrearmit() {
+function install_mupen64plus-rearmit() {
     for source in *; do
         if [[ -f "$source/projects/unix/Makefile" ]]; then
             # optflags is needed due to the fact the core seems to rebuild 2 files and relink during install stage most likely due to a buggy makefile
@@ -176,13 +176,13 @@ function install_mupen64plusrearmit() {
     rm -f "$md_inst/share/mupen64plus/InputAutoCfg.ini"
 }
 
-function configure_mupen64plusrearmit() {
+function configure_mupen64plus-rearmit() {
     local res
     local resolutions=("320x240" "640x480")
     isPlatform "kms" && res="%XRES%x%YRES%"
 
-    addEmulator 1 "${md_id}-gles2rice$name" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-rice %ROM%"
-    addEmulator 0 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM%"
+    addEmulator 1 "${md_id}-gles2rice$name" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-rearmit-video-rice %ROM%"
+    addEmulator 0 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-rearmit-video-glide64mk2 %ROM%"
 
     addSystem "n64"
 
