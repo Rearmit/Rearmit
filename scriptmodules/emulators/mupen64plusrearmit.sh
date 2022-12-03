@@ -248,7 +248,6 @@ function configure_mupen64plusrearmit() {
     # Use fast but less accurate shaders. Can help with low-end GPUs.
     iniSet "EnableInaccurateTextureCoordinates" "True"
 
-
     addAutoConf mupen64plus_audio 0
     addAutoConf mupen64plus_compatibility_check 0
 
