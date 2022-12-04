@@ -39,7 +39,7 @@ function _get_repos_mupen64plus-rearmit() {
         'mupen64plus mupen64plus-video-rice master'
     )
 
-    if ! isPlatform "H6"; then
+    if [ ! isPlatform "H6" ]; then
         repos+=(
             'mupen64plus mupen64plus-video-glide64mk2 master'
         )
@@ -158,7 +158,7 @@ function build_mupen64plus-rearmit() {
         'mupen64plus-rsp-hle/projects/unix/mupen64plus-rsp-hle.so'
         'mupen64plus-video-rice/projects/unix/mupen64plus-video-rice.so'
     )
-    ! isPlatform "rpi" && md_ret_require+=('mupen64plus-video-glide64mk2/projects/unix/mupen64plus-video-glide64mk2.so')
+    ! isPlatform "H6" && md_ret_require+=('mupen64plus-video-glide64mk2/projects/unix/mupen64plus-video-glide64mk2.so')
 }
 
 function install_mupen64plus-rearmit() {
@@ -188,7 +188,7 @@ function install_mupen64plus-rearmit() {
 
 function configure_mupen64plus-rearmit() {
     addEmulator 1 "${md_id}-gles2rice" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-rice %ROM% %XRES%x%YRES%"
-    addEmulator 0 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM% %XRES%x%YRES%"
+    ! isPlatform "H6" && addEmulator 0 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM% %XRES%x%YRES%"
 
     addSystem "n64"
 
