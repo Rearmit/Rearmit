@@ -62,7 +62,7 @@ function _pkg_info_mupen64plus-rearmit() {
                 if rp_dateIsNewer "$newest_date" "$date"; then
                     newest_date="$date"
                 fi
-            done < <(_get_repos_mupen64plus)
+            done < <(_get_repos_mupen64plus-rearmit)
             # store an md5sum of the various last commit hashes to be used to check for changes
             local hash="$(echo "${hashes[@]}" | md5sum | cut -d" " -f1)"
             echo "local pkg_repo_date=\"$newest_date\""
@@ -83,7 +83,7 @@ function _pkg_info_mupen64plus-rearmit() {
                     fi
                 fi
                 hashes+=("$hash")
-            done < <(_get_repos_mupen64plus)
+            done < <(_get_repos_mupen64plus-rearmit)
             # store an md5sum of the various last commit hashes to be used to check for changes
             local hash="$(echo "${hashes[@]}" | md5sum | cut -d" " -f1)"
             if [[ "$hash" != "$pkg_repo_extra" ]]; then
@@ -100,7 +100,7 @@ function _pkg_info_mupen64plus-rearmit() {
                     printMsgs "console" "$id repository failed - https://github.com/${repo[0]}/${repo[1]} ${repo[2]}"
                     ret=1
                 fi
-            done < <(_get_repos_mupen64plus)
+            done < <(_get_repos_mupen64plus-rearmit)
             return "$ret"
             ;;
     esac
@@ -112,7 +112,7 @@ function sources_mupen64plus-rearmit() {
     while read repo; do
         repo=($repo)
         gitPullOrClone "$md_build/${repo[1]}" https://github.com/${repo[0]}/${repo[1]} ${repo[2]} ${repo[3]}
-    done < <(_get_repos_mupen64plus)
+    done < <(_get_repos_mupen64plus-rearmit)
 }
 
 function build_mupen64plus-rearmit() {
