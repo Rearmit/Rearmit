@@ -13,7 +13,7 @@ rp_module_id="mupen64plus-rearmit"
 rp_module_desc="N64 emulator MUPEN64Plus"
 rp_module_help="ROM Extensions: .z64 .n64 .v64\n\nCopy your N64 roms to $romdir/n64"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/mupen64plus/mupen64plus-core/master/LICENSES"
-rp_module_repo=":_pkg_info_mupen64plusrearmit"
+rp_module_repo=":_pkg_info_mupen64plus-rearmit"
 rp_module_section="main"
 rp_module_flags="sdl2"
 
