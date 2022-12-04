@@ -37,8 +37,14 @@ function _get_repos_mupen64plus-rearmit() {
         'mupen64plus mupen64plus-input-sdl master'
         'mupen64plus mupen64plus-rsp-hle master'
         'mupen64plus mupen64plus-video-rice master'
-        'mupen64plus mupen64plus-video-glide64mk2 master'
     )
+
+    if ! isPlatform "H6"; then
+        repos+=(
+            'mupen64plus mupen64plus-video-glide64mk2 master'
+        )
+    fi
+
     local repo
     for repo in "${repos[@]}"; do
         echo "$repo"
@@ -135,6 +141,7 @@ function build_mupen64plus-rearmit() {
             isPlatform "armv7" && params+=("HOST_CPU=armv7")
             isPlatform "aarch64" && params+=("HOST_CPU=aarch64")
 
+            [[ "$dir" == "mupen64plus-video-glide64mk2" ]] && params+=("USE_FRAMESKIPPER=1")
             [[ "$dir" == "mupen64plus-ui-console" ]] && params+=("COREDIR=$md_inst/lib/" "PLUGINDIR=$md_inst/lib/mupen64plus/")
             make -C "$dir/projects/unix" "${params[@]}" clean
             # temporarily disable distcc due to segfaults with cross compiler and lto
@@ -170,6 +177,9 @@ function install_mupen64plus-rearmit() {
             isPlatform "armv7" && params+=("HOST_CPU=armv7")
             isPlatform "aarch64" && params+=("HOST_CPU=aarch64")
             isPlatform "x86" && params+=("SSE=SSE2")
+
+            params+=("USE_FRAMESKIPPER=1")
+
             make -C "$source/projects/unix" PREFIX="$md_inst" OPTFLAGS="$CFLAGS -O3 -flto" "${params[@]}" install
         fi
     done
