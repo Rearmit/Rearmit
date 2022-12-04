@@ -178,8 +178,6 @@ function install_mupen64plus-rearmit() {
             isPlatform "aarch64" && params+=("HOST_CPU=aarch64")
             isPlatform "x86" && params+=("SSE=SSE2")
 
-            params+=("USE_FRAMESKIPPER=1")
-
             make -C "$source/projects/unix" PREFIX="$md_inst" OPTFLAGS="$CFLAGS -O3 -flto" "${params[@]}" install
         fi
     done
