@@ -218,6 +218,7 @@ function configure_mupen64plus-rearmit() {
         su "$user" -c "$cmd"
     fi
 
+    iniConfig " = " "" "$config"
 
     if ! grep -q "\[Video-General\]" "$config"; then
         echo "[Video-General]" >> "$config"
