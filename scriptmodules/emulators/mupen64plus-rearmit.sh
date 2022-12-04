@@ -189,7 +189,9 @@ function install_mupen64plus-rearmit() {
 
 function configure_mupen64plus-rearmit() {
     addEmulator 1 "${md_id}-gles2rice" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-rice %ROM% %XRES%x%YRES%"
-    ! isPlatform "H6" && addEmulator 0 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM% %XRES%x%YRES%"
+    if [ ! isPlatform "H6" ]; then
+        addEmulator 0 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM% %XRES%x%YRES%"
+    fi
 
     addSystem "n64"
 
