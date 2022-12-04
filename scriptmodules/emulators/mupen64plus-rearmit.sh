@@ -177,12 +177,8 @@ function install_mupen64plus-rearmit() {
 }
 
 function configure_mupen64plus-rearmit() {
-    local res
-    local resolutions=("320x240" "640x480")
-    isPlatform "kms" && res="%XRES%x%YRES%"
-
-    addEmulator 1 "${md_id}-gles2rice" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-rice %ROM%"
-    addEmulator 0 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM%"
+    addEmulator 1 "${md_id}-gles2rice" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-rice %ROM% %XRES%x%YRES%"
+    addEmulator 0 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM% %XRES%x%YRES%"
 
     addSystem "n64"
 
@@ -230,24 +226,6 @@ function configure_mupen64plus-rearmit() {
     if ! grep -q "\[Video-GLideN64\]" "$config"; then
         echo "[Video-GLideN64]" >> "$config"
     fi
-
-    # Settings version. Don't touch it.
-    iniSet "configVersion" "17"
-    # Bilinear filtering mode (0=N64 3point, 1=standard)
-    iniSet "bilinearMode" "1"
-    iniSet "EnableFBEmulation" "True"
-    # Use native res
-    iniSet "UseNativeResolutionFactor" "1"
-    # Enable legacy blending
-    iniSet "EnableLegacyBlending" "True"
-    # Enable Threaded GL calls
-    iniSet "ThreadedVideo" "True"
-    # Swap frame buffers On buffer update (most performant)
-    iniSet "BufferSwapMode" "2"
-    # Disable hybrid upscaling filter (needs better GPU)
-    iniSet "EnableHybridFilter" "False"
-    # Use fast but less accurate shaders. Can help with low-end GPUs.
-    iniSet "EnableInaccurateTextureCoordinates" "True"
 
     addAutoConf mupen64plus_audio 0
     addAutoConf mupen64plus_compatibility_check 0
