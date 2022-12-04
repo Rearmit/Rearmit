@@ -181,8 +181,8 @@ function configure_mupen64plus-rearmit() {
     local resolutions=("320x240" "640x480")
     isPlatform "kms" && res="%XRES%x%YRES%"
 
-    addEmulator 1 "${md_id}-gles2rice$name" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-rearmit-video-rice %ROM%"
-    addEmulator 0 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-rearmit-video-glide64mk2 %ROM%"
+    addEmulator 1 "${md_id}-gles2rice-rearmit" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-rice %ROM%"
+    addEmulator 0 "${md_id}-glide64-rearmit" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM%"
 
     addSystem "n64"
 
