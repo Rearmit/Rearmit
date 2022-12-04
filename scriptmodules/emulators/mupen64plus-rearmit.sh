@@ -31,13 +31,13 @@ function depends_mupen64plus-rearmit() {
 
 function _get_repos_mupen64plus-rearmit() {
     local repos=(
-        'mupen64plus core'
-        'mupen64plus ui-console'
-        'mupen64plus audio-sdl'
-        'mupen64plus input-sdl'
-        'mupen64plus rsp-hle'
-        'mupen64plus video-rice'
-        'mupen64plus video-glide64mk2'
+        'mupen64plus mupen64plus-core master'
+        'mupen64plus mupen64plus-ui-console master'
+        'mupen64plus mupen64plus-audio-sdl master'
+        'mupen64plus mupen64plus-input-sdl master'
+        'mupen64plus mupen64plus-rsp-hle master'
+        'mupen64plus mupen64plus-video-rice master'
+        'mupen64plus mupen64plus-video-glide64mk2 master'
     )
     local repo
     for repo in "${repos[@]}"; do
