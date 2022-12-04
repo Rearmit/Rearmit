@@ -158,7 +158,10 @@ function build_mupen64plus-rearmit() {
         'mupen64plus-rsp-hle/projects/unix/mupen64plus-rsp-hle.so'
         'mupen64plus-video-rice/projects/unix/mupen64plus-video-rice.so'
     )
-    ! isPlatform "H6" && md_ret_require+=('mupen64plus-video-glide64mk2/projects/unix/mupen64plus-video-glide64mk2.so')
+
+    if [ ! isPlatform "H6" ]; then
+        md_ret_require+=('mupen64plus-video-glide64mk2/projects/unix/mupen64plus-video-glide64mk2.so')
+    fi
 }
 
 function install_mupen64plus-rearmit() {
