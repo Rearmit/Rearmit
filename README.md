@@ -5,4 +5,4 @@
 
 ## Supplementary
 - `libdrm`
-- `mesa3s`
+- `mesa3d`
