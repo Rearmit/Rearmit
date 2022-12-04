@@ -116,7 +116,7 @@ function sources_mupen64plus-rearmit() {
 }
 
 function build_mupen64plus-rearmit() {
-    rpSwap on 750
+    rpSwap on 1000
 
     local dir
     local params=()
