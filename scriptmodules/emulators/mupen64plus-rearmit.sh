@@ -223,9 +223,11 @@ function configure_mupen64plus-rearmit() {
 
 
     # Create GlideN64 section in .cfg
-    if ! grep -q "\[Video-GLideN64\]" "$config"; then
-        echo "[Video-GLideN64]" >> "$config"
+    if ! grep -q "\[Video-Rice\]" "$config"; then
+        echo "[Video-Rice]" >> "$config"
     fi
+
+    iniSet "ScreenUpdateSetting" "7"
 
     addAutoConf mupen64plus_audio 0
     addAutoConf mupen64plus_compatibility_check 0
