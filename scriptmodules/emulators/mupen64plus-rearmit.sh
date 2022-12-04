@@ -157,8 +157,8 @@ function build_mupen64plus-rearmit() {
         'mupen64plus-input-sdl/projects/unix/mupen64plus-input-sdl.so'
         'mupen64plus-rsp-hle/projects/unix/mupen64plus-rsp-hle.so'
         'mupen64plus-video-rice/projects/unix/mupen64plus-video-rice.so'
-        'mupen64plus-video-glide64mk2/projects/unix/mupen64plus-video-glide64mk2.so'
     )
+    ! isPlatform "rpi" && md_ret_require+=('mupen64plus-video-glide64mk2/projects/unix/mupen64plus-video-glide64mk2.so')
 }
 
 function install_mupen64plus-rearmit() {
