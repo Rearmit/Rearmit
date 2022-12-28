@@ -17,7 +17,7 @@ rp_module_section="depends"
 rp_module_flags="armbian"
 
 function depends_mesa3d() {
-    local depends=(meson ninja-build libgbm-dev libdrm-dev libpciaccess-dev python3-mako libxml2-dev libsensors-dev libzstd-dev pkg-config)
+    local depends=(meson ninja-build libgbm-dev libdrm-dev libpciaccess-dev python3-mako libxml2-dev libzstd-dev pkg-config)
 
     getDepends "${depends[@]}"
 }
@@ -59,7 +59,7 @@ function build_mesa3d() {
                     -Dvalgrind=disabled \
                     -Dlibunwind=disabled \
                     -Dgallium-vdpau=disabled \
-                    -Dlmsensors=enabled \
+                    -Dlmsensors=disabled \
                     -Dzstd=enabled \
                     -Dglvnd=false
     ninja -C builddir
